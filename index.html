@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhai Buns Online Order Form</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #d9534f;
+        }
+        .notes-section {
+            background-color: #fffbe6;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .notes-section h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        .notes-section ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .notes-section li {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        legend {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            padding: 0 10px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        .item-details label {
+            font-weight: bold;
+        }
+        .item-description {
+            font-style: italic;
+            color: #666;
+            margin: 0;
+        }
+        .qty-input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-left: 15px;
+        }
+        .options {
+            margin-left: 10px;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .text-input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        #comments {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .total-cost-container {
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #d9534f;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form id="orderForm">
+            <h1>Bhai Buns Online Order Form</h1>
+
+            <div class="notes-section">
+                <h3>Important Notes</h3>
+                <ul>
+                    <li>Pre-orders Only</li>
+                    <li>Arrive at selected time slot</li>
+                    <li>No same day changes</li>
+                </ul>
+            </div>
+
+            <fieldset>
+                <legend>Your Details</legend>
+                <div class="item">
+                    <div class="item-details" style="width: 100%;">
+                        <label for="customer-name">Name:</label>
+                        <input type="text" id="customer-name" class="text-input" required>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-details" style="width: 100%;">
+                        <label for="customer-mobile">Mobile Number:</label>
+                        <input type="tel" id="customer-mobile" class="text-input" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Pickup Details</legend>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="pickup-time">Please select your preferred pickup time:</label>
+                    </div>
+                    <select id="pickup-time" name="pickup_time" class="text-input" style="width: auto; flex-grow: 1;">
+                        <option value="6:00 PM">6:00 PM</option>
+                        <option value="6:15 PM">6:15 PM</option>
+                        <option value="6:30 PM">6:30 PM</option>
+                        <option value="6:45 PM">6:45 PM</option>
+                        <option value="7:00 PM">7:00 PM</option>
+                        <option value="7:15 PM">7:15 PM</option>
+                        <option value="7:30 PM">7:30 PM</option>
+                        <option value="7:45 PM">7:45 PM</option>
+                        <option value="8:00 PM">8:00 PM</option>
+                        <option value="8:15 PM">8:15 PM</option>
+                        <option value="8:30 PM">8:30 PM</option>
+                        <option value="8:45 PM">8:45 PM</option>
+                        <option value="9:00 PM">9:00 PM</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Beef</legend>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="og">The OG - £6.00</label>
+                        <p class="item-description">Double smash patty with melted cheese, balsamic glazed caramelized onions, and house burger sauce.</p>
+                    </div>
+                    <input type="number" id="og" class="qty-input" data-name="The OG" data-price="6.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="bbq_smash">The BBQ Smash - £6.50</label>
+                        <p class="item-description">Double smash patty with melted cheese, crispy fried onions, house burger sauce, and BBQ sauce.</p>
+                    </div>
+                    <input type="number" id="bbq_smash" class="qty-input" data-name="The BBQ Smash" data-price="6.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="jalapeno_smash">The Jalapeño Smash - £6.50</label>
+                        <p class="item-description">Double smash patty with melted cheese, jalapeños, balsamic glazed caramelized onions, and house burger sauce.</p>
+                    </div>
+                    <input type="number" id="jalapeno_smash" class="qty-input" data-name="The Jalapeño Smash" data-price="6.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="make_meal">Make it a meal - £1.50</label>
+                    </div>
+                    <input type="number" id="make_meal" class="qty-input" data-name="Make it a meal" data-price="1.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="load_chips_burger">Load the chips - £1.50</label>
+                    </div>
+                    <input type="number" id="load_chips_burger" class="qty-input" data-name="Load the chips (Burger)" data-price="1.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="add_tenders">Add 2 tenders - £2.50</label>
+                    </div>
+                    <input type="number" id="add_tenders" class="qty-input" data-name="Add 2 tenders" data-price="2.50" min="0" value="0">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Chef's Special</legend>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="loaded_smash">The Loaded Smash - £8.50</label>
+                        <p class="item-description">Topped with slow-cooked pulled beef.</p>
+                    </div>
+                    <input type="number" id="loaded_smash" class="qty-input" data-name="The Loaded Smash" data-price="8.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="nashville_taco">The Nashville Taco (2) - £5.50</label>
+                        <p class="item-description">Taco filled with Nashville chicken, pico de gallo, and chipotle mayo.</p>
+                    </div>
+                    <input type="number" id="nashville_taco" class="qty-input" data-name="The Nashville Taco (2)" data-price="5.50" min="0" value="0">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Chicken</legend>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="og_chick">The OG Chick - £4.50</label>
+                        <p class="item-description">Tender marinated fried chicken topped with house-made slaw and chipotle mayo.</p>
+                    </div>
+                    <input type="number" id="og_chick" class="qty-input" data-name="The OG Chick" data-price="4.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="nashville">The NASHVILLE - £5.50</label>
+                        <p class="item-description">Tender marinated fried chicken drenched in NASHVILLE seasoning.</p>
+                    </div>
+                    <input type="number" id="nashville" class="qty-input" data-name="The NASHVILLE" data-price="5.50" min="0" value="0">
+                    <div class="options">
+                        <strong>Spice Level:</strong>
+                        <input type="radio" id="nashville_normal" name="nashville_spice" value="Normal" checked>
+                        <label for="nashville_normal">Normal</label>
+                        <input type="radio" id="nashville_spicy" name="nashville_spice" value="Spicy">
+                        <label for="nashville_spicy">Spicy</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="buttah_chicken">The BUTTAH Chicken - £6.00</label>
+                        <p class="item-description">Tender marinated fried chicken dipped in butter chicken sauce.</p>
+                    </div>
+                    <input type="number" id="buttah_chicken" class="qty-input" data-name="The BUTTAH Chicken" data-price="6.00" min="0" value="0">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Loaded Fries and Sides</legend>
+                <div class="item">
+                    <div class="item-details"><label for="strips_chips_drink">2 Strips, chips & drink - £5.00</label></div>
+                    <input type="number" id="strips_chips_drink" class="qty-input" data-name="2 Strips, chips & drink" data-price="5.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="chips">Chips - £1.50</label></div>
+                    <input type="number" id="chips" class="qty-input" data-name="Chips" data-price="1.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="nashville_tenders_2">Nashville tenders (2) - £3.00</label></div>
+                    <input type="number" id="nashville_tenders_2" class="qty-input" data-name="Nashville tenders (2)" data-price="3.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="nashville_tenders_5">Nashville tenders (5) - £5.00</label></div>
+                    <input type="number" id="nashville_tenders_5" class="qty-input" data-name="Nashville tenders (5)" data-price="5.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="loaded_chips">Loaded chips - £6.50</label>
+                        <p class="item-description">Chips loaded with nacho cheese, jalapeños, crispy onions, and chipotle mayo.</p>
+                    </div>
+                    <input type="number" id="loaded_chips" class="qty-input" data-name="Loaded chips" data-price="6.50" min="0" value="0">
+                    <div class="options">
+                        <strong>Protein Choice:</strong>
+                        <input type="radio" id="loaded_beef" name="loaded_chips_protein" value="Beef" checked>
+                        <label for="loaded_beef">Beef</label>
+                        <input type="radio" id="loaded_chicken" name="loaded_chips_protein" value="Chicken">
+                        <label for="loaded_chicken">Chicken</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Boxes</legend>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="single_box">Single Box - £13.00</label>
+                        <p class="item-description">Any burger, loaded fries, 2 strips, nacho cheese or dip, and drink.</p>
+                    </div>
+                    <input type="number" id="single_box" class="qty-input" data-name="Single Box" data-price="13.00" min="0" value="0">
+                    <div class="options">
+                        <label for="single_box_choice">Burger Choice:</label>
+                        <input type="text" id="single_box_choice" class="text-input">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-details">
+                        <label for="sharer_box">Sharer Box - £25.00</label>
+                        <p class="item-description">Any 2 burgers, loaded fries, 4 strips, nacho cheese, dip, and 2 drinks.</p>
+                    </div>
+                    <input type="number" id="sharer_box" class="qty-input" data-name="Sharer Box" data-price="25.00" min="0" value="0">
+                    <div class="options">
+                        <label for="sharer_box_choice1">Burger Choice 1:</label>
+                        <input type="text" id="sharer_box_choice1" class="text-input">
+                        <label for="sharer_box_choice2">Burger Choice 2:</label>
+                        <input type="text" id="sharer_box_choice2" class="text-input">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Drinks, Dips & Extras</legend>
+                <div class="item">
+                    <div class="item-details"><label for="cans">Cans - £1.00</label></div>
+                    <input type="number" id="cans" class="qty-input" data-name="Cans" data-price="1.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="dips_nacho">Dips / Nacho cheese - £0.50</label></div>
+                    <input type="number" id="dips_nacho" class="qty-input" data-name="Dips / Nacho cheese" data-price="0.50" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="hot_honey">Fermented hot honey - £1.00</label></div>
+                    <input type="number" id="hot_honey" class="qty-input" data-name="Fermented hot honey" data-price="1.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="hot_drinks">Hot drinks - £2.00</label></div>
+                    <input type="number" id="hot_drinks" class="qty-input" data-name="Hot drinks" data-price="2.00" min="0" value="0">
+                </div>
+                <div class="item">
+                    <div class="item-details"><label for="cookie">Homemade cookie - £1.50</label></div>
+                    <input type="number" id="cookie" class="qty-input" data-name="Homemade cookie" data-price="1.50" min="0" value="0">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Additional Info</legend>
+                <label for="comments">Additional info or comments:</label>
+                <textarea id="comments" name="comments" rows="4"></textarea>
+            </fieldset>
+
+            <div class="total-cost-container">
+                Total Cost: <span id="total-cost">£0.00</span>
+            </div>
+
+            <button type="submit" class="submit-btn">Place Order</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const qtyInputs = document.querySelectorAll('.qty-input');
+            const totalCostElement = document.getElementById('total-cost');
+            const orderForm = document.getElementById('orderForm');
+
+            function updateTotalCost() {
+                let total = 0;
+                qtyInputs.forEach(input => {
+                    const price = parseFloat(input.dataset.price) || 0;
+                    const quantity = parseInt(input.value, 10) || 0;
+                    total += price * quantity;
+                });
+                totalCostElement.textContent = `£${total.toFixed(2)}`;
+            }
+
+            qtyInputs.forEach(input => {
+                input.addEventListener('input', updateTotalCost);
+            });
+
+            orderForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const customerName = document.getElementById('customer-name').value.trim();
+                const customerMobile = document.getElementById('customer-mobile').value.trim();
+
+                if (!customerName || !customerMobile) {
+                    alert('Please fill in your name and mobile number.');
+                    return;
+                }
+
+                const whatsAppNumber = '447764821214';
+                let orderDetails = '*New Bhai Buns Order* \n\n';
+                let hasItems = false;
+
+                orderDetails += `*Customer Name:* ${customerName}\n`;
+                orderDetails += `*Mobile Number:* ${customerMobile}\n\n`;
+
+                const pickupTime = document.getElementById('pickup-time').value;
+                orderDetails += `*Pickup Time:* ${pickupTime}\n\n`;
+                orderDetails += '*Order Items:* \n';
+
+                qtyInputs.forEach(input => {
+                    const quantity = parseInt(input.value, 10);
+                    if (quantity > 0) {
+                        hasItems = true;
+                        const itemName = input.dataset.name;
+                        orderDetails += `- ${quantity} x ${itemName}\n`;
+
+                        if (input.id === 'nashville') {
+                            const spiceLevel = document.querySelector('input[name="nashville_spice"]:checked');
+                            if (spiceLevel) orderDetails += `  (Spice: ${spiceLevel.value})\n`;
+                        }
+                        if (input.id === 'loaded_chips') {
+                            const protein = document.querySelector('input[name="loaded_chips_protein"]:checked');
+                            if (protein) orderDetails += `  (Protein: ${protein.value})\n`;
+                        }
+                        if (input.id === 'single_box') {
+                            const burgerChoice = document.getElementById('single_box_choice').value;
+                            if (burgerChoice) orderDetails += `  (Burger: ${burgerChoice})\n`;
+                        }
+                        if (input.id === 'sharer_box') {
+                            const burger1 = document.getElementById('sharer_box_choice1').value;
+                            const burger2 = document.getElementById('sharer_box_choice2').value;
+                            if (burger1) orderDetails += `  (Burger 1: ${burger1})\n`;
+                            if (burger2) orderDetails += `  (Burger 2: ${burger2})\n`;
+                        }
+                    }
+                });
+
+                if (!hasItems) {
+                    alert('Please add a quantity of at least 1 to an item to place an order.');
+                    return;
+                }
+
+                const comments = document.getElementById('comments').value.trim();
+                if (comments) {
+                    orderDetails += `\n*Additional Info:*\n${comments}\n`;
+                }
+
+                orderDetails += `\n*Total Cost:* ${totalCostElement.textContent}\n`;
+
+                const encodedMessage = encodeURIComponent(orderDetails);
+                const whatsappURL = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+                window.open(whatsappURL, '_blank');
+            });
+
+            updateTotalCost();
+        });
+    </script>
+
+</body>
+</html>
